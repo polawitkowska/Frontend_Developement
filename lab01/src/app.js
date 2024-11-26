@@ -32,10 +32,9 @@ async function fetchPokemon(name) {
     }  
 }
 
-function general() {
+document.addEventListener('DOMContentLoaded', function general() {
     document.getElementById("search").addEventListener("click", fetchPokemon)
-}
-
+})
 
 // fetchPokemonList().then(list => console.log(list));
 // fetchPokemon('charizard').then(pokemon => console.log(pokemon));
