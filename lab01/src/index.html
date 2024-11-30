@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zadanie 1</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js"></script>
-</head>
-<body>
-    <input type="search" id="search" placeholder="Wyszukaj" />
-    <div class="Lista">
-        <h2>Lista pokemonów</h2>
-        <ul id="pokemon-list">
-            <li>Pikachu</li>
-        </ul>
+  </head>
+
+  <body>
+    <header>
+      <h1>Pokemony</h1>
+      <div class="search">
+        <input type="search" placeholder="Wyszukaj" />
+      </div>
+    </header>
+
+    <div class="pokemon-list">
+      <h2>Lista pokemonów</h2>
     </div>
-    <div class="Szczegoly">
-        <h2>Szczegóły</h2>
-        <input type="search" id="pokemon-details" placeholder="Wybierz pokemona">
-        <button id="search">Wyszukaj</button>
+
+    <div class="pokemon-details">
+      <h2>Szczegóły</h2>
     </div>
-    <div id="loading" style="display: none;">Ładowanie...</div>
-</body>
+  </body>
 </html>

@@ -1,0 +1,44 @@
+body {
+  background-color: #ececec;
+  margin: auto;
+}
+
+header {
+  padding: 1px;
+  background-color: rgb(231, 137, 175);
+  justify-items: center;
+
+  h1 {
+    display: flex;
+    color: rgb(138, 1, 56);
+  }
+}
+
+.search {
+  padding: 20px;
+  justify-items: center;
+
+  input {
+    width: 200px;
+    display: flex;
+
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0px 5px;
+    height: 30px;
+
+    background-color: white;
+    border-style: solid;
+    border-color: rgb(138, 1, 56);
+  }
+}
+
+.pokemon-list {
+  display: flex;
+  justify-self: left;
+}
+
+.pokemon-details {
+  display: flex;
+  justify-self: right;
+}
