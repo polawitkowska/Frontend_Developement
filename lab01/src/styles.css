@@ -14,7 +14,6 @@ header {
 
   h1 {
     display: flex;
-    color: rgb(138, 1, 56);
   }
 }
 
@@ -42,8 +41,6 @@ header {
   justify-content: space-between;
 
   div {
-    display: flex;
-    justify-content: center;
     width: 200px;
 
     padding-bottom: 55%;
@@ -55,5 +52,21 @@ header {
     border-width: 2px;
     border-color: rgb(138, 1, 56);
     border-radius: 15px;
+
+    h2 {
+      text-align: center;
+    }
+  }
+
+  #pokemon-list {
+    font-size: large;
+    li {
+      margin: 5px 0px;
+      cursor: pointer;
+    }
+
+    li:hover {
+      color: rgb(138, 1, 56);
+    }
   }
 }
