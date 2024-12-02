@@ -8,6 +8,10 @@ header {
   background-color: rgb(231, 137, 175);
   justify-items: center;
 
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(138, 1, 56);
+
   h1 {
     display: flex;
     color: rgb(138, 1, 56);
@@ -33,12 +37,23 @@ header {
   }
 }
 
-.pokemon-list {
+.elements {
   display: flex;
-  justify-self: left;
-}
+  justify-content: space-between;
 
-.pokemon-details {
-  display: flex;
-  justify-self: right;
+  div {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+
+    padding-bottom: 55%;
+    margin: 5px;
+
+    background-color: rgb(231, 137, 175);
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(138, 1, 56);
+    border-radius: 15px;
+  }
 }
