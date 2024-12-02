@@ -24,6 +24,7 @@ async function fetchPokemon(name) {
       const pokemon = await response.json();
       const result = {
         name: pokemon.name,
+        form: pokemon.forms.map((form) => form.url),
         types: pokemon.types.map((type) => type.type.name),
         // abilities: pokemon.abilities.map((ability) => ability.ability.name),
         base_stats: pokemon.stats.map((stat) => stat.base_stat),
@@ -37,6 +38,21 @@ async function fetchPokemon(name) {
     console.error("Wystąpił błąd: ", error);
   }
 }
+
+// async function getSprite(url) {
+//   try {
+//     const response = await fetch(`${url}`);
+//     if (!response.ok) {
+//       throw new Error(
+//         `Nie udało się pobrać danych o pokemonie, status: ${response.status}`
+//       );
+//     } else {
+//       return response;
+//     }
+//   } catch (error) {
+//     console.error("Wystąpił błąd: ", error);
+//   }
+// }
 
 async function displayPokemonList() {
   const pokemonListElement = document.getElementById("pokemon-list");
@@ -69,4 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   displayPokemonList();
 });
 
-// fetchPokemon("charizard").then((result) => console.log(result));
+// const pokemon = fetchPokemon("charizard").then((result) => console.log(result));
+// getSprite("https://pokeapi.co/api/v2/pokemon-form/6/").then((result) =>
+//   console.log(result.sprites)
+// );
