@@ -66,13 +66,34 @@ async function displayPokemonDetails(pokemonName) {
         <p>Id: ${pokemon.id}</p>
         <p>Types: ${pokemon.types.join(", ")}</p>
         <p>Base stats: ${pokemon.base_stats.join(", ")}</p>
-        <p>Height: ${pokemon.height} dm</p>
-        <p>Weight: ${pokemon.weight} hg</p>        
+        <p>Height: ${pokemon.height}</p>
+        <p>Weight: ${pokemon.weight}</p>        
     `;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   displayPokemonList();
+
+  document
+    .getElementById("search")
+    .addEventListener("keypress", async function (event) {
+      if (event.key === "Enter") {
+        const pokemon = document.getElementById("search").value.toLowerCase();
+        try {
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
+          );
+          if (!response.ok) {
+            throw new Error("Błąd");
+          }
+          const data = await response.json();
+          document.getElementById("details").innerHTML = ``;
+          displayPokemonDetails(data.name);
+        } catch (error) {
+          console.error("Błąd");
+        }
+      }
+    });
 });
 
 // const pokemon = fetchPokemon("charizard").then((result) => console.log(result));
