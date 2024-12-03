@@ -60,11 +60,12 @@ async function displayPokemonDetails(pokemonName) {
 
   pokemonDetailsElement.innerHTML = `
         <h2>Szczegóły</h2>
+        <img src="${pokemon.image}" alt="${pokemon.name}">
         <h3>${pokemon.name}</h3>
         <p>Types: ${pokemon.types.join(", ")}</p>
         <p>Base stats: ${pokemon.base_stats.join(", ")}</p>
         <p>Height: ${pokemon.height} dm</p>
-        <p>Weight: ${pokemon.weight} hg</p>
+        <p>Weight: ${pokemon.weight} hg</p>        
     `;
 }
 
