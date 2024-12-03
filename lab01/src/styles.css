@@ -38,10 +38,11 @@ header {
 
 .elements {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  justify-content: space-around;
 
   div {
-    width: 200px;
+    width: 300px;
     margin: 5px;
 
     background-color: rgb(231, 137, 175);
@@ -59,6 +60,7 @@ header {
   .pokemon-list {
     li {
       margin: 5px 0px;
+      margin-left: 30px;
       cursor: pointer;
     }
 
@@ -79,7 +81,7 @@ header {
         text-align: center;
       }
       img {
-        margin-left: 55px;
+        margin-left: 105px;
       }
     }
   }

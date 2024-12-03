@@ -24,6 +24,7 @@ async function fetchPokemon(name) {
       const pokemon = await response.json();
       const result = {
         name: pokemon.name,
+        id: pokemon.id,
         form: pokemon.forms.map((form) => form.url),
         types: pokemon.types.map((type) => type.type.name),
         // abilities: pokemon.abilities.map((ability) => ability.ability.name),
@@ -62,6 +63,7 @@ async function displayPokemonDetails(pokemonName) {
         <h2>Szczegóły</h2>
         <img src="${pokemon.image}" alt="${pokemon.name}">
         <h3>${pokemon.name}</h3>
+        <p>Id: ${pokemon.id}</p>
         <p>Types: ${pokemon.types.join(", ")}</p>
         <p>Base stats: ${pokemon.base_stats.join(", ")}</p>
         <p>Height: ${pokemon.height} dm</p>
