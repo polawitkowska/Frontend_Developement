@@ -41,6 +41,7 @@ header {
   display: flex;
   justify-content: center;
   justify-content: space-around;
+  font-size: large;
 
   div {
     width: 300px;
