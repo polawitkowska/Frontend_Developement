@@ -79,21 +79,30 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("keypress", async function (event) {
       if (event.key === "Enter") {
         const pokemon = document.getElementById("search").value.toLowerCase();
-        try {
-          const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
-          );
-          if (!response.ok) {
-            throw new Error("Błąd");
+        if (pokemon) {
+          try {
+            const response = await fetch(
+              `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
+            );
+            if (!response.ok) {
+              document.getElementById(
+                "error"
+              ).innerHTML = `<p>Wystąpił błąd</p>`;
+              throw new Error("Błąd");
+            }
+            document.getElementById("error").innerHTML = ``;
+            const data = await response.json();
+            document.getElementById("details").innerHTML = ``;
+            displayPokemonDetails(data.name);
+          } catch (error) {
+            console.error("Błąd");
           }
-          const data = await response.json();
-          document.getElementById("details").innerHTML = ``;
-          displayPokemonDetails(data.name);
-        } catch (error) {
-          console.error("Błąd");
+        } else {
+          document.getElementById("details").innerHTML = `<h2>Szczegóły</h2>`;
+          document.getElementById("error").innerHTML = ``;
         }
       }
     });
 });
 
-// const pokemon = fetchPokemon("charizard").then((result) => console.log(result));
+// fetchPokemon("charizard").then((result) => console.log(result));

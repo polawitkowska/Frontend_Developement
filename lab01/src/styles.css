@@ -1,6 +1,7 @@
 body {
   background-color: white;
   margin: auto;
+  font-family: sans-serif;
 }
 
 header {
@@ -86,5 +87,20 @@ header {
         margin-left: 105px;
       }
     }
+  }
+}
+
+#error {
+  font-weight: bolder;
+  background-color: rgb(251, 122, 122);
+
+  justify-self: right;
+
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+
+  p {
+    padding: 0px 5px;
   }
 }
