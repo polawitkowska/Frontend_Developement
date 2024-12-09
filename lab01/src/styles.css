@@ -90,15 +90,20 @@ header {
   }
 }
 
-#error {
+#showError {
+  width: 150px;
+  padding: 5px;
+  margin: 5px;
+
+  text-align: center;
+  justify-self: right;
+
   font-weight: bolder;
   background-color: rgb(251, 122, 122);
 
-  justify-self: right;
-
   border-style: solid;
+  border-color: rgb(72, 5, 5);
   border-radius: 10px;
-  border-width: 1px;
 
   p {
     padding: 0px 5px;

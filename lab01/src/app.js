@@ -87,19 +87,21 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!response.ok) {
               document.getElementById(
                 "error"
-              ).innerHTML = `<p>Wystąpił błąd</p>`;
+              ).innerHTML = `<p id="showError">Wystąpił błąd!</p>`;
+              document.getElementById(
+                "details"
+              ).innerHTML = `<h2>Szczegóły</h2>`;
               throw new Error("Błąd");
             }
             document.getElementById("error").innerHTML = ``;
             const data = await response.json();
-            document.getElementById("details").innerHTML = ``;
             displayPokemonDetails(data.name);
           } catch (error) {
             console.error("Błąd");
           }
         } else {
-          document.getElementById("details").innerHTML = `<h2>Szczegóły</h2>`;
           document.getElementById("error").innerHTML = ``;
+          document.getElementById("details").innerHTML = `<h2>Szczegóły</h2>`;
         }
       }
     });
