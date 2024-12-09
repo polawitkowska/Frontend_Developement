@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zadanie 2</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="text/babel" src="app.js"></script>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Pokemony</h1>
+      <div class="search">
+        <input type="search" id="search" placeholder="Wyszukaj" />
+      </div>
+    </header>
+
+    <div class="elements">
+      <div class="pokemon-list">
+        <h2>Lista pokemonów</h2>
+        <ul id="pokemon-list"></ul>
+      </div>
+
+      <div class="pokemon-details">
+        <div id="details"><h2>Szczegóły</h2></div>
+      </div>
+    </div>
+
+    <footer id="error"></footer>
+  </body>
+</html>
