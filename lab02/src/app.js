@@ -42,10 +42,10 @@ async function fetchPokemon(name) {
 }
 
 async function displayPokemonList() {
-  const pokemonListElement = document.getElementById("pokemon-list");
+  const pokemonListElement = document.getElementById("pokemon-list-element");
   const pokemonList = await fetchPokemonList();
 
-  pokemonListElement.innerHTML = "";
+  pokemonListElement.innerHTML = ``;
 
   pokemonList.forEach((pokemon) => {
     const listItem = document.createElement("li");
@@ -71,52 +71,63 @@ async function displayPokemonDetails(pokemonName) {
       `;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  displayPokemonList();
+// document.addEventListener("DOMContentLoaded", () => {
+//   displayPokemonList();
 
-  document
-    .getElementById("search")
-    .addEventListener("keypress", async function (event) {
-      if (event.key === "Enter") {
-        const pokemon = document.getElementById("search").value.toLowerCase();
-        if (pokemon) {
-          try {
-            const response = await fetch(
-              `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
-            );
-            if (!response.ok) {
-              document.getElementById(
-                "error"
-              ).innerHTML = `<p id="showError">Wystąpił błąd!</p>`;
-              document.getElementById(
-                "details"
-              ).innerHTML = `<h2>Szczegóły</h2>`;
-              throw new Error("Błąd");
-            }
-            document.getElementById("error").innerHTML = ``;
-            const data = await response.json();
-            displayPokemonDetails(data.name);
-          } catch (error) {
-            console.error("Błąd");
-          }
-        } else {
-          document.getElementById("error").innerHTML = ``;
-          document.getElementById("details").innerHTML = `<h2>Szczegóły</h2>`;
-        }
-      }
-    });
-});
+//   document
+//     .getElementById("search")
+//     .addEventListener("keypress", async function (event) {
+//       if (event.key === "Enter") {
+//         const pokemon = document.getElementById("search").value.toLowerCase();
+//         if (pokemon) {
+//           try {
+//             const response = await fetch(
+//               `https://pokeapi.co/api/v2/pokemon/${pokemon}/`
+//             );
+//             if (!response.ok) {
+//               document.getElementById(
+//                 "error"
+//               ).innerHTML = `<p id="showError">Wystąpił błąd!</p>`;
+//               document.getElementById(
+//                 "details"
+//               ).innerHTML = `<h2>Szczegóły</h2>`;
+//               throw new Error("Błąd");
+//             }
+//             document.getElementById("error").innerHTML = ``;
+//             const data = await response.json();
+//             displayPokemonDetails(data.name);
+//           } catch (error) {
+//             console.error("Błąd");
+//           }
+//         } else {
+//           document.getElementById("error").innerHTML = ``;
+//           document.getElementById("details").innerHTML = `<h2>Szczegóły</h2>`;
+//         }
+//       }
+//     });
+// });
 
-// fetchPokemon("charizard").then((result) => console.log(result));
+const pokemonList = displayPokemonList();
 
-const App = () => {
+const List = ({ pokemonList }) => {
   return (
-    <div>
-      <h1>Hello, React!</h1>
-      <p>This is a simple React app using a CDN.</p>
+    <div id="list">
+      <h2>Lista pokemonów</h2>
+      <ul id="pokemon-list-element"></ul>
     </div>
   );
 };
 
-// Renderowanie aplikacji React do elementu "root"
-ReactDOM.render(<App />, document.getElementById("root"));
+const Details = ({ selectedPokemon }) => {
+  return (
+    <div id="details">
+      <h2>Szczegóły</h2>
+    </div>
+  );
+};
+
+ReactDOM.render(
+  <List pokemonList={pokemonList} />,
+  document.getElementById("pokemon-list")
+);
+ReactDOM.render(<Details />, document.getElementById("pokemon-details"));

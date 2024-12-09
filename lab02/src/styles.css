@@ -38,13 +38,14 @@ header {
   }
 }
 
-.elements {
+#elements {
   display: flex;
   justify-content: center;
   justify-content: space-around;
   font-size: large;
 
-  div {
+  #list,
+  #details {
     width: 300px;
     margin: 5px;
 
@@ -60,7 +61,7 @@ header {
     }
   }
 
-  .pokemon-list {
+  #pokemon-list {
     li {
       margin: 5px 0px;
       margin-left: 30px;
@@ -72,7 +73,7 @@ header {
     }
   }
 
-  .pokemon-details {
+  #pokemon-details {
     height: 65px;
     #details {
       margin-left: -2px;
