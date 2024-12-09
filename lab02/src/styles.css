@@ -5,7 +5,6 @@ body {
 }
 
 header {
-  padding: 1px;
   background-color: rgb(231, 137, 175);
   justify-items: center;
   margin-bottom: 10px;
@@ -20,7 +19,7 @@ header {
 }
 
 .search {
-  padding: 20px;
+  padding-bottom: 5px;
   justify-items: center;
 
   input {
@@ -28,7 +27,6 @@ header {
     display: flex;
 
     border-radius: 10px;
-    padding: 5px;
     margin: 0px 5px;
     height: 30px;
 
@@ -38,14 +36,12 @@ header {
   }
 }
 
-#elements {
+.elements {
   display: flex;
   justify-content: center;
   justify-content: space-around;
-  font-size: large;
 
-  #list,
-  #details {
+  div {
     width: 300px;
     margin: 5px;
 
@@ -74,7 +70,7 @@ header {
   }
 
   #pokemon-details {
-    height: 65px;
+    height: 100px;
     #details {
       margin-left: -2px;
       margin-top: -2px;
@@ -88,6 +84,11 @@ header {
         margin-left: 105px;
       }
     }
+  }
+
+  #empty-details {
+    text-align: center;
+    height: 100px;
   }
 }
 
