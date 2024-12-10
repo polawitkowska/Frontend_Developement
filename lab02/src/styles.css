@@ -1,3 +1,8 @@
+:root {
+  --border-color: rgb(176, 97, 128);
+  --bg-color: rgb(246, 158, 195);
+}
+
 body {
   background-color: white;
   margin: auto;
@@ -5,13 +10,13 @@ body {
 }
 
 header {
-  background-color: rgb(231, 137, 175);
+  background-color: var(--bg-color);
   justify-items: center;
   margin-bottom: 10px;
 
   border-style: solid;
   border-width: 2px;
-  border-color: rgb(138, 1, 56);
+  border-color: var(--border-color);
 
   h1 {
     display: flex;
@@ -32,7 +37,7 @@ header {
 
     background-color: white;
     border-style: solid;
-    border-color: rgb(138, 1, 56);
+    border-color: var(--border-color);
   }
 }
 
@@ -45,11 +50,11 @@ header {
     width: 300px;
     margin: 5px;
 
-    background-color: rgb(231, 137, 175);
+    background-color: var(--bg-color);
 
     border-style: solid;
     border-width: 2px;
-    border-color: rgb(138, 1, 56);
+    border-color: var(--border-color);
     border-radius: 15px;
 
     h2 {
@@ -65,7 +70,7 @@ header {
     }
 
     li:hover {
-      color: rgb(138, 1, 56);
+      color: var(--border-color);
     }
   }
 
@@ -110,4 +115,13 @@ header {
   p {
     padding: 0px 5px;
   }
+}
+
+footer {
+  height: 100px;
+  background-color: var(--bg-color);
+  margin-top: 50px;
+
+  border-top-style: solid;
+  border-color: var(--border-color);
 }

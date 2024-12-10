@@ -109,6 +109,7 @@ const App = () => {
         <Details pokemon={selectedPokemon} />
       </div>
       <div id="error"></div>
+      <footer></footer>
     </>
   );
 };
