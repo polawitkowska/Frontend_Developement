@@ -95,7 +95,7 @@ const App = () => {
     <>
       <header>
         <h1>Pokemony</h1>
-        <div class="search">
+        <div className="search">
           <input
             type="text"
             id="search"
@@ -104,7 +104,7 @@ const App = () => {
           />
         </div>
       </header>
-      <div class="elements">
+      <div className="elements">
         <List pokemonList={pokemonList} onPokemonSelect={fetchPokemonDetails} />
         <Details pokemon={selectedPokemon} />
       </div>
