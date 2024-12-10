@@ -77,10 +77,6 @@ const Details = ({ pokemon }) => {
   );
 };
 
-function handlePokemonSelect(pokemonName) {
-  fetchPokemonDetails(pokemonName);
-}
-
 function handleSearch(event) {
   if (event.key === "Enter") {
     const pokemonName = event.target.value.toLowerCase();
@@ -109,7 +105,7 @@ const App = () => {
         </div>
       </header>
       <div class="elements">
-        <List pokemonList={pokemonList} onPokemonSelect={handlePokemonSelect} />
+        <List pokemonList={pokemonList} onPokemonSelect={fetchPokemonDetails} />
         <Details pokemon={selectedPokemon} />
       </div>
       <div id="error"></div>
