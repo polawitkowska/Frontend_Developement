@@ -92,7 +92,7 @@ function handleSearch(event) {
 
 const App = () => {
   return (
-    <React.Fragment>
+    <>
       <header>
         <h1>Pokemony</h1>
         <div class="search">
@@ -109,7 +109,7 @@ const App = () => {
         <Details pokemon={selectedPokemon} />
       </div>
       <div id="error"></div>
-    </React.Fragment>
+    </>
   );
 };
 
