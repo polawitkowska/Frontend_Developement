@@ -1,10 +1,17 @@
-import Image from "next/image";
+"use client";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import List from "./components/PokemonList";
 import Details from "./components/PokemonDetails";
 import Navigation from "./components/Navigation";
 
 export default function Home() {
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+  const handlePokemonSelect = (pokemonName) => {
+    setSelectedPokemon(pokemonName);
+  };
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -14,8 +21,8 @@ export default function Home() {
         <input type="text" placeholder="Wyszukaj" />
       </header>
       <main className={styles.main}>
-        <List />
-        <Details />
+        <List onPokemonSelect={handlePokemonSelect} />
+        <Details pokemonName={selectedPokemon} />
       </main>
       <footer className={styles.footer}></footer>
     </div>
