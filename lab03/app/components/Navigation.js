@@ -3,8 +3,9 @@ import styles from "../page.module.css";
 export default function Navigation() {
   return (
     <nav>
-      <h1>Pokemony</h1>
-      <button></button>
+      <button>Home</button>
+      <button>Lista Pokemonów</button>
+      <button>Szczegóły</button>
     </nav>
   );
 }
