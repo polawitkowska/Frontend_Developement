@@ -1,5 +1,9 @@
 import styles from "../page.module.css";
 
 export default function Details() {
-  return <div className={styles.page}>Szczegóły</div>;
+  return (
+    <div className="details">
+      <h2>Szczegóły</h2>
+    </div>
+  );
 }

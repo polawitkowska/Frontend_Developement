@@ -9,6 +9,7 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <Navigation />
+        <input type="text" placeholder="Wyszukaj" />
       </header>
       <main className={styles.main}>
         <List />
