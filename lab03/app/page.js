@@ -12,13 +12,21 @@ export default function Home() {
     setSelectedPokemon(pokemonName);
   };
 
+  function handleSearch(event) {
+    if (event.key === "Enter") {
+      const searchedName = event.target.value.toLowerCase();
+      if (searchedName) {
+        setSelectedPokemon(searchedName);
+      }
+    }
+  }
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
         <Navigation />
         <h1>Pokemony</h1>
-
-        <input type="text" placeholder="Wyszukaj" />
+        <input type="text" placeholder="Wyszukaj" onKeyPress={handleSearch} />
       </header>
       <main className={styles.main}>
         <List onPokemonSelect={handlePokemonSelect} />

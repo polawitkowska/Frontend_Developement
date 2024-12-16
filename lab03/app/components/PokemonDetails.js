@@ -38,13 +38,13 @@ export default function Details({ pokemonName }) {
 
   if (!pokemonName) {
     return (
-      <div className={styles.details}>
-        Wybierz Pokemona, aby zobaczyć szczegóły.
+      <div className="details">
+        <h3>Wybierz Pokemona, aby zobaczyć szczegóły.</h3>
       </div>
     );
   } else {
     return (
-      <div className={styles.details}>
+      <div className="details">
         <h2>Szczegóły</h2>
         <h3>{pokemonDetails.name}</h3>
         <img src={pokemonDetails.image} alt={pokemonDetails.name} />

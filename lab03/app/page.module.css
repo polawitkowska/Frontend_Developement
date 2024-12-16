@@ -67,14 +67,16 @@
     margin: 5px;
 
     background-color: pink;
+    text-align: center;
 
     border-style: solid;
     border-width: 2px;
     border-color: palevioletred;
     border-radius: 15px;
+  }
 
-    h2 {
-      text-align: center;
-    }
+  li {
+    text-align: left;
+    margin-left: 5%;
   }
 }
