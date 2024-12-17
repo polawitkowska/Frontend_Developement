@@ -36,6 +36,18 @@ export default function Details({ pokemonName }) {
     }
   }, [pokemonName]);
 
+  function handleFavorite(pokemon) {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const isAlreadyFavorite = favorites.find((fav) => fav.id === pokemon.id);
+    if (!isAlreadyFavorite) {
+      favorites.push(pokemon);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      alert(`${pokemon.name} dodany do ulubionych!`);
+    } else {
+      alert(`${pokemon.name} jest już w ulubionych.`);
+    }
+  }
+
   if (!pokemonName) {
     return (
       <div className="details">
@@ -53,7 +65,9 @@ export default function Details({ pokemonName }) {
         <p>Statystyki bazowe: {pokemonDetails.base_stats}</p>
         <p>Wzrost: {pokemonDetails.height}</p>
         <p>Waga: {pokemonDetails.weight}</p>
-        <button>Dodaj do ulubionych</button>
+        <button onClick={() => handleFavorite(pokemonDetails)}>
+          Dodaj do ulubionych
+        </button>
       </div>
     );
   }
