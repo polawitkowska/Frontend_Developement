@@ -19,15 +19,29 @@
   }
 
   input {
-    width: 200px;
-    height: 30px;
+    width: 150px;
+    height: 25px;
 
     border-radius: 10px;
     border-color: palevioletred;
     border-style: solid;
   }
-  input:hover {
+  input:hover,
+  select:hover {
     border-color: rgb(205, 65, 112);
+  }
+
+  select {
+    width: 70px;
+    padding: 3px;
+    margin-left: 10px;
+
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: palevioletred;
+    border-style: solid;
+
+    cursor: pointer;
   }
 
   nav {
