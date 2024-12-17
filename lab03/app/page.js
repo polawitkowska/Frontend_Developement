@@ -52,11 +52,11 @@ export default function Home() {
         <Navigation />
         <h1>Pokemony</h1>
         <input type="text" placeholder="Wyszukaj" onKeyDown={handleSearch} />
-        <select>
+        <select value={selectedType} onChange={handleTypeChange}>
           <option value="">Typy</option>
           {types.map((type) => (
             <option key={type.name} value={type.name}>
-              {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+              {type.name}
             </option>
           ))}
         </select>

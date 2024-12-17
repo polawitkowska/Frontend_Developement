@@ -89,8 +89,32 @@
     border-radius: 15px;
   }
 
+  button {
+    background-color: rgb(255, 239, 241);
+
+    margin-right: 5px;
+    width: 100px;
+    height: 40px;
+
+    border-radius: 10px;
+    border-color: palevioletred;
+    border-style: solid;
+
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: rgb(205, 65, 112);
+    background-color: rgb(255, 218, 230);
+  }
+
   li {
     text-align: left;
     margin-left: 5%;
+    cursor: pointer;
+    width: 50px;
+  }
+
+  li:hover {
+    color: rgb(205, 65, 112);
   }
 }

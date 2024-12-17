@@ -53,6 +53,7 @@ export default function Details({ pokemonName }) {
         <p>Statystyki bazowe: {pokemonDetails.base_stats}</p>
         <p>Wzrost: {pokemonDetails.height}</p>
         <p>Waga: {pokemonDetails.weight}</p>
+        <button>Dodaj do ulubionych</button>
       </div>
     );
   }
