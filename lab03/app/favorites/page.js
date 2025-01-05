@@ -29,9 +29,9 @@ export default function Favorites() {
         {favorites.length === 0 ? (
           <p>Brak ulubionych Pokémonów.</p>
         ) : (
-          <ul>
+          <p className={styles.p}>
             {favorites.map((pokemon) => (
-              <li key={pokemon.id}>
+              <div key={pokemon.id}>
                 <h3>{pokemon.name}</h3>
                 <img src={pokemon.image} alt={pokemon.name} />
                 <p>Id: {pokemon.id}</p>
@@ -42,9 +42,9 @@ export default function Favorites() {
                 <button onClick={() => removeFavorite(pokemon.id)}>
                   Usuń z ulubionych
                 </button>
-              </li>
+              </div>
             ))}
-          </ul>
+          </p>
         )}
       </main>
       <footer className={styles.footer}></footer>

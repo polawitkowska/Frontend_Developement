@@ -43,3 +43,44 @@
     }
   }
 }
+
+.main {
+  h2 {
+    text-align: center;
+  }
+  .p {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+  }
+  div {
+    width: 400px;
+    margin: 5px;
+
+    background-color: pink;
+    text-align: center;
+    font-size: medium;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: palevioletred;
+    border-radius: 15px;
+  }
+
+  button {
+    background-color: rgb(255, 239, 241);
+
+    margin-bottom: 10px;
+    width: 100px;
+    height: 40px;
+
+    border-radius: 10px;
+    border-color: palevioletred;
+    border-style: solid;
+
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: rgb(205, 65, 112);
+    background-color: rgb(255, 218, 230);
+  }
+}
