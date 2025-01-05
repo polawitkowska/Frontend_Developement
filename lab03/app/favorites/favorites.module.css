@@ -45,15 +45,17 @@
 }
 
 .main {
-  h2 {
-    text-align: center;
-  }
   .p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
+
+    margin-top: 50px;
+    margin-left: 6%;
+    justify-items: center;
+    align-items: center;
   }
   div {
-    width: 400px;
+    width: 350px;
     margin: 5px;
 
     background-color: pink;

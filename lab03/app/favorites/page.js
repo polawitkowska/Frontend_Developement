@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import styles from "./favorites.module.css";
 import Navigation from "../components/Navigation";
 
@@ -22,10 +21,9 @@ export default function Favorites() {
     <div className={styles.page}>
       <header className={styles.header}>
         <Navigation />
-        <h1>Ulubione</h1>
+        <h1>Lista ulubionych Pokemonów</h1>
       </header>
       <main className={styles.main}>
-        <h2>Lista ulubionych Pokemonów</h2>
         {favorites.length === 0 ? (
           <p>Brak ulubionych Pokémonów.</p>
         ) : (
@@ -47,7 +45,6 @@ export default function Favorites() {
           </p>
         )}
       </main>
-      <footer className={styles.footer}></footer>
     </div>
   );
 }

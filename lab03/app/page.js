@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import List from "./components/PokemonList";
 import Details from "./components/PokemonDetails";
