@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
+  const [expandedPokemonIds, setExpandedPokemonIds] = useState([]);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -15,6 +16,12 @@ export default function Favorites() {
     const updatedFavorites = favorites.filter((pokemon) => pokemon.id !== id);
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  const showDetails = (id) => {
+    setExpandedPokemonIds((prev) =>
+      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
+    );
   };
 
   return (
@@ -29,17 +36,28 @@ export default function Favorites() {
         ) : (
           <p className={styles.p}>
             {favorites.map((pokemon) => (
-              <div key={pokemon.id}>
+              <div className={styles.element} key={pokemon.id}>
                 <h3>{pokemon.name}</h3>
                 <img src={pokemon.image} alt={pokemon.name} />
                 <p>Id: {pokemon.id}</p>
-                <p>Typy: {pokemon.types}</p>
-                <p>Statystyki bazowe: {pokemon.base_stats}</p>
-                <p>Wzrost: {pokemon.height}</p>
-                <p>Waga: {pokemon.weight}</p>
+
+                <button onClick={() => showDetails(pokemon.id)}>
+                  {expandedPokemonIds.includes(pokemon.id)
+                    ? "Schowaj szczegóły"
+                    : "Pokaż szczegóły"}
+                </button>
                 <button onClick={() => removeFavorite(pokemon.id)}>
                   Usuń z ulubionych
                 </button>
+
+                {expandedPokemonIds.includes(pokemon.id) && (
+                  <div className={styles.additionalDetails}>
+                    <p>Typy: {pokemon.types}</p>
+                    <p>Statystyki bazowe: {pokemon.base_stats}</p>
+                    <p>Wzrost: {pokemon.height}</p>
+                    <p>Waga: {pokemon.weight}</p>
+                  </div>
+                )}
               </div>
             ))}
           </p>

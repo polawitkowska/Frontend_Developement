@@ -2,7 +2,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
 
-export default function List({ onPokemonSelect }) {
+export default function List({
+  onPokemonSelect,
+  searchTerm,
+  selectedType,
+  limit,
+}) {
   const [pokemonList, setPokemonList] = useState([]);
 
   async function fetchPokemonList() {
@@ -25,7 +30,7 @@ export default function List({ onPokemonSelect }) {
   }, []);
 
   return (
-    <div className="list">
+    <div className={styles.list}>
       <h2>Lista Pokemonów</h2>
       <ul>
         {pokemonList.map((pokemon, index) => (
