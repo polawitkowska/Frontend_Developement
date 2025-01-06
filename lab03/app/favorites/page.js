@@ -6,11 +6,12 @@ import Navigation from "../components/Navigation";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [expandedPokemonIds, setExpandedPokemonIds] = useState([]);
+  const limit = null;
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
-  }, []);
+  }, [limit]);
 
   const removeFavorite = (id) => {
     const updatedFavorites = favorites.filter((pokemon) => pokemon.id !== id);
@@ -25,16 +26,16 @@ export default function Favorites() {
   };
 
   return (
-    <div className={styles.page}>
+    <>
       <header className={styles.header}>
         <Navigation />
         <h1>Lista ulubionych Pokemonów</h1>
       </header>
       <main className={styles.main}>
         {favorites.length === 0 ? (
-          <p>Brak ulubionych Pokémonów.</p>
+          <div className={styles.noFavorites}>Brak ulubionych Pokemonów.</div>
         ) : (
-          <p className={styles.p}>
+          <div className={styles.favorites}>
             {favorites.map((pokemon) => (
               <div className={styles.element} key={pokemon.id}>
                 <h3>{pokemon.name}</h3>
@@ -60,9 +61,9 @@ export default function Favorites() {
                 )}
               </div>
             ))}
-          </p>
+          </div>
         )}
       </main>
-    </div>
+    </>
   );
 }

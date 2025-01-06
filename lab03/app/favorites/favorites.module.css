@@ -1,8 +1,3 @@
-.page {
-  font-family: var(--font-geist-sans);
-  font-size: large;
-}
-
 .header {
   height: 120px;
   justify-items: center;
@@ -45,7 +40,12 @@
 }
 
 .main {
-  .p {
+  .noFavorites {
+    text-align: center;
+    margin-top: 50px;
+    font-size: larger;
+  }
+  .favorites {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 420px));
 

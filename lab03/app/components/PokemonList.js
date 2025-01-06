@@ -2,32 +2,28 @@
 import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
 
-export default function List({
-  onPokemonSelect,
-  searchTerm,
-  selectedType,
-  limit,
-}) {
+export default function List({ onPokemonSelect, limit }) {
   const [pokemonList, setPokemonList] = useState([]);
 
-  async function fetchPokemonList() {
-    try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
-      if (!response.ok) {
-        throw new Error(
-          `Nie udało się pobrać danych o pokemonach, status: ${response.status}`
-        );
-      }
-      const data = await response.json();
-      setPokemonList(data.results);
-    } catch (error) {
-      console.error("Wystąpił błąd: ", error);
-    }
-  }
-
   useEffect(() => {
+    async function fetchPokemonList() {
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`
+        );
+        if (!response.ok) {
+          throw new Error(
+            `Nie udało się pobrać danych o pokemonach, status: ${response.status}`
+          );
+        }
+        const data = await response.json();
+        setPokemonList(data.results);
+      } catch (error) {
+        console.error("Wystąpił błąd: ", error);
+      }
+    }
     fetchPokemonList();
-  }, []);
+  }, [limit]);
 
   return (
     <div className={styles.list}>
