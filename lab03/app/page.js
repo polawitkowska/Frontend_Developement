@@ -11,9 +11,11 @@ export default function Home() {
   const router = useRouter();
 
   const initialLimit = parseInt(searchParams.get("limit")) || 20;
+  const initialType = searchParams.get("type") || "";
 
   const [searchTerm, setSearchTerm] = useState("");
   const [limit, setLimit] = useState(initialLimit);
+  const [selectedType, setSelectedType] = useState(initialType);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [types, setTypes] = useState([]);
 
@@ -36,7 +38,7 @@ export default function Home() {
     fetchTypes();
   }, [limit]);
 
-  const updateURL = (searchTerm, newLimit) => {
+  const updateURL = (newLimit) => {
     const params = new URLSearchParams();
 
     if (newLimit) params.set("limit", newLimit);
@@ -59,10 +61,21 @@ export default function Home() {
     }
   };
 
+  const handleTypeChange = (event) => {
+    const newType = event.target.value;
+
+    setSelectedType(newType);
+  };
+
   const handleLimitChange = (event) => {
     const newLimit = event.target.value;
-    setLimit(newLimit);
-    updateURL(searchTerm, newLimit);
+    if (newLimit < 100) {
+      setLimit(newLimit);
+      updateURL(newLimit);
+    } else {
+      setLimit(100);
+      updateURL(100);
+    }
   };
 
   return (
@@ -76,7 +89,7 @@ export default function Home() {
           placeholder="Wyszukaj"
           onKeyDown={handleSearch}
         />
-        <select>
+        <select onChange={handleTypeChange}>
           <option value="">Typy</option>
           {types.map((type) => (
             <option key={type.name} value={type.name}>
@@ -95,7 +108,11 @@ export default function Home() {
         />
       </header>
       <main className={styles.main}>
-        <List onPokemonSelect={handlePokemonSelect} limit={limit} />
+        <List
+          onPokemonSelect={handlePokemonSelect}
+          selectedType={selectedType}
+          limit={limit}
+        />
         <Details pokemonName={selectedPokemon} />
       </main>
     </div>

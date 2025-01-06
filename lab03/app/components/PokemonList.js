@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
 
-export default function List({ onPokemonSelect, limit }) {
+export default function List({ onPokemonSelect, selectedType, limit }) {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,9 @@ export default function List({ onPokemonSelect, limit }) {
           );
         }
         const data = await response.json();
-        setPokemonList(data.results);
+        let results = data.results;
+
+        setPokemonList(results);
       } catch (error) {
         console.error("Wystąpił błąd: ", error);
       }
