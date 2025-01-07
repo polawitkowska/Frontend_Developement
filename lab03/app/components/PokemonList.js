@@ -31,7 +31,11 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
         );
 
         const filteredPokemons = selectedType
-          ? pokemonsWithTypes.filter((pok) => pok.types.includes(selectedType))
+          ? selectedType === "Typy"
+            ? results
+            : pokemonsWithTypes.filter((pok) =>
+                pok.types.includes(selectedType)
+              )
           : results;
 
         setPokemonList(filteredPokemons);

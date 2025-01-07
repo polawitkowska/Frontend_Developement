@@ -38,9 +38,10 @@ export default function Home() {
     fetchTypes();
   }, [selectedType, limit]);
 
-  const updateURL = (newLimit) => {
+  const updateURL = (newType, newLimit) => {
     const params = new URLSearchParams();
 
+    if (newType) params.set("type", newType);
     if (newLimit) params.set("limit", newLimit);
 
     router.push(`?${params.toString()}`);
@@ -65,16 +66,17 @@ export default function Home() {
     const newType = event.target.value;
 
     setSelectedType(newType);
+    updateURL(newType, limit);
   };
 
   const handleLimitChange = (event) => {
     const newLimit = event.target.value;
     if (newLimit < 100) {
       setLimit(newLimit);
-      updateURL(newLimit);
+      updateURL(selectedType, newLimit);
     } else {
       setLimit(100);
-      updateURL(100);
+      updateURL(selectedType, 100);
     }
   };
 
@@ -104,7 +106,6 @@ export default function Home() {
           max="100"
           value={limit}
           onChange={handleLimitChange}
-          placeholder="Limit"
         />
       </header>
       <main className={styles.main}>
