@@ -9,7 +9,7 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
     async function fetchPokemonList() {
       try {
         const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`
+          `https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0`
         );
         if (!response.ok) {
           throw new Error(
@@ -38,7 +38,11 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
               )
           : results;
 
-        setPokemonList(filteredPokemons);
+        const limitedPokemons = limit
+          ? filteredPokemons.slice(0, limit)
+          : filteredPokemons;
+
+        setPokemonList(limitedPokemons);
       } catch (error) {
         console.error("Wystąpił błąd: ", error);
       }
