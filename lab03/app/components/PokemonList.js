@@ -17,15 +17,30 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
           );
         }
         const data = await response.json();
-        let results = data.results;
+        const results = data.results;
 
-        setPokemonList(results);
+        const pokemonsWithTypes = await Promise.all(
+          results.map(async (pokemon) => {
+            const res = await fetch(pokemon.url);
+            const details = await res.json();
+            return {
+              name: pokemon.name,
+              types: details.types.map((typeInfo) => typeInfo.type.name),
+            };
+          })
+        );
+
+        const filteredPokemons = selectedType
+          ? pokemonsWithTypes.filter((pok) => pok.types.includes(selectedType))
+          : results;
+
+        setPokemonList(filteredPokemons);
       } catch (error) {
         console.error("Wystąpił błąd: ", error);
       }
     }
     fetchPokemonList();
-  }, [limit]);
+  }, [selectedType, limit]);
 
   return (
     <div className={styles.list}>

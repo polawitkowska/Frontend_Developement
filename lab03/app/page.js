@@ -36,7 +36,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchTypes();
-  }, [limit]);
+  }, [selectedType, limit]);
 
   const updateURL = (newLimit) => {
     const params = new URLSearchParams();

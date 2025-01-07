@@ -6,12 +6,13 @@ import Navigation from "../components/Navigation";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [expandedPokemonIds, setExpandedPokemonIds] = useState([]);
+  const selectedType = null;
   const limit = null;
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
-  }, [limit]);
+  }, [selectedType, limit]);
 
   const removeFavorite = (id) => {
     const updatedFavorites = favorites.filter((pokemon) => pokemon.id !== id);
