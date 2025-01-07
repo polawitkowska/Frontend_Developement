@@ -10,14 +10,13 @@ export default function Home() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialLimit = parseInt(searchParams.get("limit")) || 20;
   const initialType = searchParams.get("type") || "";
+  const initialLimit = parseInt(searchParams.get("limit")) || 20;
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [limit, setLimit] = useState(initialLimit);
-  const [selectedType, setSelectedType] = useState(initialType);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState(initialType);
+  const [limit, setLimit] = useState(initialLimit);
 
   async function fetchTypes() {
     try {
@@ -93,6 +92,7 @@ export default function Home() {
         />
         <select onChange={handleTypeChange}>
           <option value="">Typy</option>
+          <option>all</option>
           {types.map((type) => (
             <option key={type.name} value={type.name}>
               {type.name}

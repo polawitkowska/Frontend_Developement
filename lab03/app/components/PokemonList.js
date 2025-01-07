@@ -31,7 +31,7 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
         );
 
         const filteredPokemons = selectedType
-          ? selectedType === "Typy"
+          ? selectedType === "all"
             ? results
             : pokemonsWithTypes.filter((pok) =>
                 pok.types.includes(selectedType)
