@@ -125,4 +125,18 @@
   li:hover {
     color: rgb(205, 65, 112);
   }
+
+  .details > .notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 300px;
+    padding: 10px 1px;
+
+    background-color: rgb(255, 173, 173);
+    border-radius: 10px;
+    border-color: rgb(255, 111, 111);
+    border-style: solid;
+  }
 }

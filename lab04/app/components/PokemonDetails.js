@@ -4,6 +4,7 @@ import styles from "../page.module.css";
 
 export default function Details({ pokemonName }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
+  const [notification, setNotification] = useState("");
 
   async function fetchPokemonDetails() {
     try {
@@ -30,6 +31,13 @@ export default function Details({ pokemonName }) {
     }
   }
 
+  function showNotification(message) {
+    setNotification(message);
+    setTimeout(() => {
+      setNotification("");
+    }, 2000);
+  }
+
   useEffect(() => {
     if (pokemonName) {
       fetchPokemonDetails();
@@ -42,9 +50,9 @@ export default function Details({ pokemonName }) {
     if (!isAlreadyFavorite) {
       favorites.push(pokemon);
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      alert(`${pokemon.name} dodany do ulubionych!`);
+      showNotification(`${pokemon.name} został dodany do ulubionych!`);
     } else {
-      alert(`${pokemon.name} jest już w ulubionych.`);
+      showNotification(`${pokemon.name} jest już w ulubionych.`);
     }
   }
 
@@ -54,23 +62,23 @@ export default function Details({ pokemonName }) {
     if (!isAlreadyCompared && compare.length < 2) {
       compare.push(pokemon);
       localStorage.setItem("compare", JSON.stringify(compare));
-      alert(`${pokemon.name} dodany do porównywarki!`);
+      showNotification(`${pokemon.name} został dodany do porównywarki!`);
     } else if (!isAlreadyCompared && compare.length >= 2) {
-      alert(`W porównywarce są już dwa pokemony!`);
+      showNotification(`W porównywarce są już dwa pokemony!`);
     } else {
-      alert(`${pokemon.name} jest już w porównywarce.`);
+      showNotification(`${pokemon.name} jest już w porównywarce.`);
     }
   }
 
   if (!pokemonName) {
     return (
-      <div className="details">
+      <div className={styles.details}>
         <h3>Wybierz Pokemona, aby zobaczyć szczegóły.</h3>
       </div>
     );
   } else {
     return (
-      <div className="details">
+      <div className={styles.details}>
         <h2>Szczegóły</h2>
         <h3>{pokemonDetails.name}</h3>
         <img src={pokemonDetails.image} alt={pokemonDetails.name} />
@@ -85,6 +93,9 @@ export default function Details({ pokemonName }) {
         <button onClick={() => handleCompare(pokemonDetails)}>
           Dodaj do porównania
         </button>
+        {notification && (
+          <div className={styles.notification}>{notification}</div>
+        )}
       </div>
     );
   }
