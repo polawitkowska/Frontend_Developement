@@ -12,11 +12,13 @@ export default function Home() {
 
   const initialType = searchParams.get("type") || "";
   const initialLimit = parseInt(searchParams.get("limit")) || 20;
+  const initialFilters = searchParams.get("filters") || [];
 
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState(initialType);
   const [limit, setLimit] = useState(initialLimit);
+  const [filters, setFilters] = useState(initialFilters);
 
   async function fetchTypes() {
     try {
@@ -62,10 +64,24 @@ export default function Home() {
   };
 
   const handleTypeChange = (event) => {
-    const newType = event.target.value;
+    const selectedType = event.target.value;
+    if (selectedType && selectedType !== "all") {
+      setFilters((prevFilters) => {
+        if (!prevFilters.includes(selectedType)) {
+          const updatedFilters = [...prevFilters, selectedType];
+          localStorage.setItem("filters", JSON.stringify(updatedFilters));
+          return updatedFilters;
+        }
+        return prevFilters;
+      });
+    }
+  };
 
-    setSelectedType(newType);
-    updateURL(newType, limit);
+  const removeFilter = (filter) => {
+    const filters = JSON.parse(localStorage.getItem("filters")) || [];
+    const updatedFilters = filters.filter((fil) => fil !== filter);
+    setFilters(updatedFilters);
+    localStorage.setItem("filters", JSON.stringify(updatedFilters));
   };
 
   const handleLimitChange = (event) => {
@@ -99,6 +115,7 @@ export default function Home() {
             </option>
           ))}
         </select>
+
         <input
           className={styles.limit}
           type="number"
@@ -107,6 +124,24 @@ export default function Home() {
           value={limit}
           onChange={handleLimitChange}
         />
+
+        {filters.length > 0 ? (
+          <div className={styles.filters}>
+            {filters.map((fil) => (
+              <div key={fil}>
+                {fil}
+                <button
+                  onClick={() => removeFilter(fil)}
+                  className={styles.removeButton}
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
       </header>
       <main className={styles.main}>
         <List

@@ -4,7 +4,7 @@
 }
 
 .header {
-  height: 120px;
+  height: 150px;
   justify-items: center;
   align-content: center;
   background-color: pink;
@@ -72,6 +72,21 @@
     button:hover {
       border-color: rgb(205, 65, 112);
       background-color: rgb(255, 218, 230);
+    }
+  }
+
+  .filters {
+    display: flex;
+    width: auto;
+    height: auto;
+    div {
+      margin: 10px;
+      border-style: solid;
+
+      .removeButton {
+        background-color: pink;
+        border: none;
+      }
     }
   }
 }
