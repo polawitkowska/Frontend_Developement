@@ -80,12 +80,25 @@
     width: auto;
     height: auto;
     div {
+      background-color: rgb(255, 239, 241);
+      font-size: medium;
+
       margin: 10px;
+      padding: 5px;
+
       border-style: solid;
+      border-color: palevioletred;
+      border-radius: 10px;
+      border-width: 2px;
 
       .removeButton {
         background-color: pink;
         border: none;
+        margin-left: 5px;
+        background-color: rgb(255, 239, 241);
+      }
+      .removeButton:hover {
+        cursor: pointer;
       }
     }
   }

@@ -10,15 +10,16 @@ export default function Home() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialType = searchParams.get("type") || "";
   const initialLimit = parseInt(searchParams.get("limit")) || 20;
-  const initialFilters = searchParams.get("filters") || [];
 
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [types, setTypes] = useState([]);
-  const [selectedType, setSelectedType] = useState(initialType);
   const [limit, setLimit] = useState(initialLimit);
-  const [filters, setFilters] = useState(initialFilters);
+  const [filters, setFilters] = useState([]);
+
+  useEffect(() => {
+    fetchTypes();
+  }, [filters, limit]);
 
   async function fetchTypes() {
     try {
@@ -34,10 +35,6 @@ export default function Home() {
       console.error("Wystąpił błąd podczas pobierania typów: ", error);
     }
   }
-
-  useEffect(() => {
-    fetchTypes();
-  }, [selectedType, limit]);
 
   const updateURL = (newType, newLimit) => {
     const params = new URLSearchParams();
@@ -65,14 +62,12 @@ export default function Home() {
 
   const handleTypeChange = (event) => {
     const selectedType = event.target.value;
-    if (selectedType && selectedType !== "all") {
-      setFilters((prevFilters) => {
-        if (!prevFilters.includes(selectedType)) {
-          const updatedFilters = [...prevFilters, selectedType];
-          localStorage.setItem("filters", JSON.stringify(updatedFilters));
-          return updatedFilters;
-        }
-        return prevFilters;
+    const isAlreadyAdded = filters.includes(selectedType);
+    if (selectedType && !isAlreadyAdded) {
+      setFilters((prev) => {
+        const updatedFilters = [...prev, selectedType];
+        localStorage.setItem("filters", JSON.stringify(updatedFilters));
+        return updatedFilters;
       });
     }
   };
@@ -88,10 +83,10 @@ export default function Home() {
     const newLimit = event.target.value;
     if (newLimit < 100) {
       setLimit(newLimit);
-      updateURL(selectedType, newLimit);
+      updateURL(newLimit);
     } else {
       setLimit(100);
-      updateURL(selectedType, 100);
+      updateURL(100);
     }
   };
 
@@ -146,7 +141,7 @@ export default function Home() {
       <main className={styles.main}>
         <List
           onPokemonSelect={handlePokemonSelect}
-          selectedType={selectedType}
+          filters={filters}
           limit={limit}
         />
         <Details pokemonName={selectedPokemon} />

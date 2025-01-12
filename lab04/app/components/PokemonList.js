@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
 
-export default function List({ onPokemonSelect, selectedType, limit }) {
+export default function List({ onPokemonSelect, filters, limit }) {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
@@ -30,13 +30,17 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
           })
         );
 
-        const filteredPokemons = selectedType
-          ? selectedType === "all"
-            ? results
-            : pokemonsWithTypes.filter((pok) =>
-                pok.types.includes(selectedType)
-              )
-          : results;
+        console.log(filters);
+
+        const filteredPokemons =
+          filters.length > 0
+            ? filters.includes("all")
+              ? results
+              : pokemonsWithTypes.filter((pokemon) =>
+                  pokemon.types.some((type) => filters.includes(type))
+                )
+            : results;
+        console.log("a", filteredPokemons);
 
         const limitedPokemons = limit
           ? filteredPokemons.slice(0, limit)
@@ -48,7 +52,11 @@ export default function List({ onPokemonSelect, selectedType, limit }) {
       }
     }
     fetchPokemonList();
-  }, [selectedType, limit]);
+  }, [filters, limit]);
+
+  // useEffect(() => {
+  //   console.log(filters);
+  // });
 
   return (
     <div className={styles.list}>
