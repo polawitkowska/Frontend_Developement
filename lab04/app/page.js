@@ -36,10 +36,9 @@ export default function Home() {
     }
   }
 
-  const updateURL = (newType, newLimit) => {
+  const updateURL = (newLimit) => {
     const params = new URLSearchParams();
 
-    if (newType) params.set("type", newType);
     if (newLimit) params.set("limit", newLimit);
 
     router.push(`?${params.toString()}`);
