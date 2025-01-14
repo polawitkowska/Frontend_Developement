@@ -30,8 +30,6 @@ export default function List({ onPokemonSelect, filters, limit }) {
           })
         );
 
-        console.log(filters);
-
         const filteredPokemons =
           filters.length > 0
             ? filters.includes("all")
@@ -40,7 +38,6 @@ export default function List({ onPokemonSelect, filters, limit }) {
                   pokemon.types.some((type) => filters.includes(type))
                 )
             : results;
-        console.log("a", filteredPokemons);
 
         const limitedPokemons = limit
           ? filteredPokemons.slice(0, limit)
@@ -53,10 +50,6 @@ export default function List({ onPokemonSelect, filters, limit }) {
     }
     fetchPokemonList();
   }, [filters, limit]);
-
-  // useEffect(() => {
-  //   console.log(filters);
-  // });
 
   return (
     <div className={styles.list}>
