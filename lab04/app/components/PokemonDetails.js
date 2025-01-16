@@ -12,9 +12,8 @@ export default function Details({ pokemonName }) {
         `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
       );
       if (!response.ok) {
-        throw new Error(
-          `Nie udało się pobrać danych, status: ${response.status}`
-        );
+        showNotification(`Nie udało się znaleźć pokemona o podanej nazwie`);
+        return;
       }
       const data = await response.json();
       setPokemonDetails({
