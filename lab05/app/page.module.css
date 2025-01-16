@@ -1,0 +1,170 @@
+.page {
+  font-family: var(--font-geist-sans);
+  font-size: large;
+}
+
+.header {
+  height: 150px;
+  justify-items: center;
+  align-content: center;
+  background-color: pink;
+
+  border-style: solid;
+  border-width: 2px;
+  border-color: palevioletred;
+
+  h1 {
+    margin-top: -30px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 150px;
+    height: 25px;
+
+    border-radius: 10px;
+    border-color: palevioletred;
+    border-style: solid;
+  }
+  input:hover,
+  select:hover {
+    border-color: rgb(205, 65, 112);
+  }
+
+  .limit {
+    width: 50px;
+    padding-left: 5px;
+  }
+
+  select {
+    width: 75px;
+    padding: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: palevioletred;
+    border-style: solid;
+
+    cursor: pointer;
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+
+    button {
+      background-color: rgb(255, 239, 241);
+
+      margin-right: 5px;
+      width: 90px;
+      height: 40px;
+
+      border-radius: 10px;
+      border-color: palevioletred;
+      border-style: solid;
+
+      cursor: pointer;
+    }
+    button:hover {
+      border-color: rgb(205, 65, 112);
+      background-color: rgb(255, 218, 230);
+    }
+  }
+
+  .filters {
+    display: flex;
+    width: auto;
+    height: auto;
+    div {
+      background-color: rgb(255, 239, 241);
+      font-size: medium;
+
+      margin: 10px;
+      padding: 5px;
+
+      border-style: solid;
+      border-color: palevioletred;
+      border-radius: 10px;
+      border-width: 2px;
+
+      .removeButton {
+        background-color: pink;
+        border: none;
+        margin-left: 5px;
+        background-color: rgb(255, 239, 241);
+      }
+      .removeButton:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  height: 600px;
+
+  div {
+    width: 350px;
+    height: fit-content;
+    margin: 5px;
+    padding-bottom: 10px;
+
+    background-color: pink;
+    text-align: center;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: palevioletred;
+    border-radius: 15px;
+  }
+
+  button {
+    background-color: rgb(255, 239, 241);
+
+    margin-right: 5px;
+    width: 100px;
+    height: 40px;
+
+    border-radius: 10px;
+    border-color: palevioletred;
+    border-style: solid;
+
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: rgb(205, 65, 112);
+    background-color: rgb(255, 218, 230);
+  }
+
+  li {
+    text-align: left;
+    margin-left: 5%;
+    cursor: pointer;
+    width: 50px;
+  }
+
+  li:hover {
+    color: rgb(205, 65, 112);
+  }
+
+  .details > .notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: 300px;
+    padding: 10px 1px;
+
+    background-color: rgb(255, 173, 173);
+    border-radius: 10px;
+    border-color: rgb(255, 111, 111);
+    border-style: solid;
+  }
+}
