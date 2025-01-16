@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import List from "./components/PokemonList";
 import Details from "./components/PokemonDetails";
 import Navigation from "./components/Navigation";
+import NotesForm from "./components/NotesForm";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -144,6 +145,7 @@ export default function Home() {
           limit={limit}
         />
         <Details pokemonName={selectedPokemon} />
+        <NotesForm />
       </main>
     </div>
   );
