@@ -13,6 +13,7 @@ export default function Details({ pokemonName }) {
       );
       if (!response.ok) {
         showNotification(`Nie udało się znaleźć pokemona o podanej nazwie`);
+        setPokemonDetails({});
         return;
       }
       const data = await response.json();
