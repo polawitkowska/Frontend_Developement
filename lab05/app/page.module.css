@@ -154,7 +154,7 @@
     color: rgb(205, 65, 112);
   }
 
-  .details > .notification {
+  .notification {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -166,5 +166,40 @@
     border-radius: 10px;
     border-color: rgb(255, 111, 111);
     border-style: solid;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 100;
+
+    background-color: rgb(182, 175, 175);
+    border: none;
+
+    width: 800px;
+
+    .notesForm {
+      padding: 50px;
+      border-radius: 8px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: auto;
+      height: 500px;
+    }
+
+    .closeButton {
+      position: inherit;
+      top: 120;
+      right: 330;
+      width: 40px;
+      height: 40px;
+
+      background: none;
+      border: none;
+
+      font-size: x-large;
+    }
   }
 }

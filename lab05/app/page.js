@@ -145,7 +145,7 @@ export default function Home() {
           limit={limit}
         />
         <Details pokemonName={selectedPokemon} />
-        <NotesForm />
+        {/* <NotesForm /> */}
       </main>
     </div>
   );

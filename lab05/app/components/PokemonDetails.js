@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
+import NotesForm from "./NotesForm";
 
 export default function Details({ pokemonName }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
   const [notification, setNotification] = useState("");
+  const [showNotesForm, setShowNotesForm] = useState(false);
 
   async function fetchPokemonDetails() {
     try {
@@ -78,25 +80,41 @@ export default function Details({ pokemonName }) {
     );
   } else {
     return (
-      <div className={styles.details}>
-        <h2>Szczegóły</h2>
-        <h3>{pokemonDetails.name}</h3>
-        <img src={pokemonDetails.image} alt={pokemonDetails.name} />
-        <p>Id: {pokemonDetails.id}</p>
-        <p>Typy: {pokemonDetails.types}</p>
-        <p>Statystyki bazowe: {pokemonDetails.base_stats}</p>
-        <p>Wzrost: {pokemonDetails.height}</p>
-        <p>Waga: {pokemonDetails.weight}</p>
-        <button onClick={() => handleFavorite(pokemonDetails)}>
-          Dodaj do ulubionych
-        </button>
-        <button onClick={() => handleCompare(pokemonDetails)}>
-          Dodaj do porównania
-        </button>
-        {notification && (
-          <div className={styles.notification}>{notification}</div>
+      <>
+        <div className={styles.details}>
+          <h2>Szczegóły</h2>
+          <h3>{pokemonDetails.name}</h3>
+          <img src={pokemonDetails.image} alt={pokemonDetails.name} />
+          <p>Id: {pokemonDetails.id}</p>
+          <p>Typy: {pokemonDetails.types}</p>
+          <p>Statystyki bazowe: {pokemonDetails.base_stats}</p>
+          <p>Wzrost: {pokemonDetails.height}</p>
+          <p>Waga: {pokemonDetails.weight}</p>
+          <button onClick={() => handleFavorite(pokemonDetails)}>
+            Dodaj do ulubionych
+          </button>
+          <button onClick={() => handleCompare(pokemonDetails)}>
+            Dodaj do porównania
+          </button>
+          {notification && (
+            <div className={styles.notification}>{notification}</div>
+          )}
+          <button onClick={() => setShowNotesForm(true)}>
+            Nowa notatka treningowa
+          </button>
+        </div>
+        {showNotesForm && (
+          <div className={styles.overlay}>
+            <button
+              className={styles.closeButton}
+              onClick={() => setShowNotesForm(false)}
+            >
+              x
+            </button>
+            <NotesForm />
+          </div>
         )}
-      </div>
+      </>
     );
   }
 }
