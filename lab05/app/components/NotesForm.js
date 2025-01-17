@@ -104,6 +104,7 @@ export default function NotesForm({ pokemonId }) {
           <div className={styles.error}>{formik.errors.strategia}</div>
         ) : null}
 
+        <label htmlFor="skutecznosc">Wybierz skuteczność</label>
         <select
           id="skutecznosc"
           name="skutecznosc"
@@ -111,7 +112,7 @@ export default function NotesForm({ pokemonId }) {
           onChange={formik.handleChange}
           value={formik.values.skutecznosc}
         >
-          <option value="">Skuteczność</option>
+          <option value=""></option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -150,6 +151,7 @@ export default function NotesForm({ pokemonId }) {
           <div className={styles.error}>{formik.errors.data}</div>
         ) : null}
 
+        <label htmlFor="przeciwnicy">Przeciwnicy</label>
         <select
           id="przeciwnicy"
           name="przeciwnicy"

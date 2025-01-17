@@ -204,15 +204,28 @@
       border-color: rgb(205, 79, 121);
 
       display: flex;
+      align-items: center;
 
       width: auto;
       height: 500px;
 
-      background-color: rgb(255, 230, 234);
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
 
       label,
       .element {
         margin: 5px;
+        width: 100%;
+      }
+
+      input:nth-of-type(2),
+      input:nth-of-type(3) {
+        height: 100px;
+      }
+
+      .submitButton {
+        background-color: #e8e8e8;
+        border: 2px solid #ccc;
       }
     }
 
@@ -233,6 +246,7 @@
       color: rgb(255, 111, 111);
       background: none;
       border: none;
+      justify-self: right;
     }
   }
 }
