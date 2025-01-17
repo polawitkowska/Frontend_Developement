@@ -45,12 +45,15 @@ export default function Details({ pokemonName }) {
     if (pokemonName) {
       fetchPokemonDetails();
     }
-  }, [pokemonName]);
+  }, [pokemonDetails.id, pokemonName]);
 
   useEffect(() => {
-    const notes = JSON.parse(localStorage.getItem("pokemonNotes") || "{}");
-    setExistingNotes(notes);
-  }, []);
+    const loadNotes = () => {
+      const notes = JSON.parse(localStorage.getItem("pokemonNotes") || "{}");
+      setExistingNotes(notes);
+    };
+    loadNotes();
+  }, [pokemonDetails.id, pokemonName]);
 
   function handleFavorite(pokemon) {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
