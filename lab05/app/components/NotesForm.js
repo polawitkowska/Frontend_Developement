@@ -4,7 +4,7 @@ import styles from "../page.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-export default function NotesForm() {
+export default function NotesForm({ pokemonId }) {
   const [types, setTypes] = useState([]);
 
   async function fetchTypes() {
@@ -26,7 +26,24 @@ export default function NotesForm() {
     fetchTypes();
   }, []);
 
-  const handleSubmit = (pokemon) => {};
+  const handleSubmit = (values, pokemonId) => {
+    const existingNotes = JSON.parse(
+      localStorage.getItem("pokemonNotes") || "{}"
+    );
+    const newNote = {
+      ...values,
+      pokemonId,
+      createdAt: new Date().toISOString(),
+    };
+
+    if (!existingNotes[pokemonId]) {
+      existingNotes[pokemonId] = [];
+    }
+    existingNotes[pokemonId].push(newNote);
+    localStorage.setItem("pokemonNotes", JSON.stringify(existingNotes));
+
+    alert(JSON.stringify(values, null, 2));
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -52,7 +69,7 @@ export default function NotesForm() {
       data: Yup.date(),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleSubmit(values, pokemonId);
     },
   });
 
@@ -64,6 +81,7 @@ export default function NotesForm() {
           id="taktyka"
           name="taktyka"
           type="text"
+          className={styles.element}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.taktyka}
@@ -77,6 +95,7 @@ export default function NotesForm() {
           id="strategia"
           name="strategia"
           type="text"
+          className={styles.element}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.strategia}
@@ -85,7 +104,7 @@ export default function NotesForm() {
           <div className={styles.error}>{formik.errors.strategia}</div>
         ) : null}
 
-        <select>
+        <select className={styles.element}>
           <option value="">Skuteczność</option>
           <option>1</option>
           <option>2</option>
@@ -102,6 +121,7 @@ export default function NotesForm() {
           id="warunki"
           name="warunki"
           type="text"
+          className={styles.element}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.warunki}
@@ -115,6 +135,7 @@ export default function NotesForm() {
           id="data"
           name="data"
           type="date"
+          className={styles.element}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.data}
@@ -123,7 +144,7 @@ export default function NotesForm() {
           <div className={styles.error}>{formik.errors.data}</div>
         ) : null}
 
-        <select>
+        <select className={styles.element}>
           <option value="">Przeciwnicy</option>
           <option>all</option>
           {types.map((type) => (
@@ -136,7 +157,9 @@ export default function NotesForm() {
           <div className={styles.error}>{formik.errors.data}</div>
         ) : null}
 
-        <button className={styles.submitButton}>Zatwierdź notatkę</button>
+        <button type="submit" className={styles.submitButton}>
+          Zatwierdź notatkę
+        </button>
       </form>
     </div>
   );

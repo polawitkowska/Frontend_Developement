@@ -111,7 +111,7 @@ export default function Details({ pokemonName }) {
             >
               x
             </button>
-            <NotesForm />
+            <NotesForm pokemonId={pokemonDetails.id} />
           </div>
         )}
       </>
