@@ -7,6 +7,7 @@ export default function Details({ pokemonName }) {
   const [pokemonDetails, setPokemonDetails] = useState({});
   const [notification, setNotification] = useState("");
   const [showNotesForm, setShowNotesForm] = useState(false);
+  const [existingNotes, setExistingNotes] = useState({});
 
   async function fetchPokemonDetails() {
     try {
@@ -46,6 +47,11 @@ export default function Details({ pokemonName }) {
     }
   }, [pokemonName]);
 
+  useEffect(() => {
+    const notes = JSON.parse(localStorage.getItem("pokemonNotes") || "{}");
+    setExistingNotes(notes);
+  }, []);
+
   function handleFavorite(pokemon) {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const isAlreadyFavorite = favorites.find((fav) => fav.id === pokemon.id);
@@ -70,6 +76,17 @@ export default function Details({ pokemonName }) {
     } else {
       showNotification(`${pokemon.name} jest już w porównywarce.`);
     }
+  }
+
+  function renderNotes(notes) {
+    return notes.map((note, index) => (
+      <div key={index} className={styles.noteCard}>
+        <p>Taktyka: {note.taktyka}</p>
+        <p>Strategia: {note.strategia}</p>
+        <p>Warunki: {note.warunki}</p>
+        <p>Data utworzenia: {new Date(note.createdAt).toLocaleDateString()}</p>
+      </div>
+    ));
   }
 
   if (!pokemonName) {
@@ -112,6 +129,12 @@ export default function Details({ pokemonName }) {
               x
             </button>
             <NotesForm pokemonId={pokemonDetails.id} />
+          </div>
+        )}
+        {existingNotes[pokemonDetails.id] && (
+          <div className={styles.pokemonNotes}>
+            <h3>Notatki treningowe:</h3>
+            {renderNotes(existingNotes[pokemonDetails.id])}
           </div>
         )}
       </>
