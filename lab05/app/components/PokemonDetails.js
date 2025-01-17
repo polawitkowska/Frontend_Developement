@@ -81,22 +81,47 @@ export default function Details({ pokemonName }) {
     }
   }
 
+  function removeNote(note, pokemonId) {
+    const updatedNotes = { ...existingNotes };
+    updatedNotes[pokemonId] = existingNotes[pokemonId].filter(
+      (el) => el.createdAt !== note.createdAt
+    );
+
+    setExistingNotes(updatedNotes);
+    localStorage.setItem("pokemonNotes", JSON.stringify(updatedNotes));
+  }
+
   function renderNotes(notes) {
     return notes.map((note, index) => (
       <div key={index} className={styles.noteCard}>
+        <h4>Notatka nr. {index + 1}</h4>
         <p>Taktyka: {note.taktyka}</p>
         <p>Strategia: {note.strategia}</p>
+        <p>Skuteczność: {note.skutecznosc}</p>
         <p>Warunki: {note.warunki}</p>
+        <p>Przeciwnicy: {note.przeciwnicy}</p>
         <p>Data utworzenia: {new Date(note.createdAt).toLocaleDateString()}</p>
+        <button
+          className={styles.deleteButton}
+          onClick={() => removeNote(note, pokemonDetails.id)}
+        >
+          Usuń notatkę
+        </button>
       </div>
     ));
   }
 
   if (!pokemonName) {
     return (
-      <div className={styles.details}>
-        <h3>Wybierz Pokemona, aby zobaczyć szczegóły.</h3>
-      </div>
+      <>
+        <div className={styles.details}>
+          <h3>Wybierz Pokemona, aby zobaczyć szczegóły.</h3>
+        </div>
+        <div className={styles.pokemonNotes}>
+          <h3>Notatki treningowe:</h3>
+          Wybierz pokemona aby wyświetlić jego notatki.
+        </div>
+      </>
     );
   } else {
     return (
@@ -134,10 +159,15 @@ export default function Details({ pokemonName }) {
             <NotesForm pokemonId={pokemonDetails.id} />
           </div>
         )}
-        {existingNotes[pokemonDetails.id] && (
+        {existingNotes[pokemonDetails.id] ? (
           <div className={styles.pokemonNotes}>
             <h3>Notatki treningowe:</h3>
             {renderNotes(existingNotes[pokemonDetails.id])}
+          </div>
+        ) : (
+          <div className={styles.pokemonNotes}>
+            <h3>Notatki treningowe:</h3>
+            Wybrany pokemon nie ma przypisanych notatek.
           </div>
         )}
       </>
