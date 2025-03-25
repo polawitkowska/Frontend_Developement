@@ -91,6 +91,8 @@ export default function Details({ pokemonName }) {
     localStorage.setItem("pokemonNotes", JSON.stringify(updatedNotes));
   }
 
+  function editNote(note) {}
+
   function renderNotes(notes) {
     return notes.map((note, index) => (
       <div key={index} className={styles.noteCard}>
@@ -100,7 +102,10 @@ export default function Details({ pokemonName }) {
         <p>Skuteczność: {note.skutecznosc}</p>
         <p>Warunki: {note.warunki}</p>
         <p>Przeciwnicy: {note.przeciwnicy}</p>
-        <p>Data utworzenia: {new Date(note.createdAt).toLocaleDateString()}</p>
+        <p>Data utworzenia: {note.data}</p>
+        {/* <button className={styles.editButton} onClick={() => editNote(note)}>
+          Edytuj notatkę
+        </button> */}
         <button
           className={styles.deleteButton}
           onClick={() => removeNote(note, pokemonDetails.id)}

@@ -159,7 +159,7 @@ export default function NotesForm({ pokemonId }) {
           onChange={formik.handleChange}
           value={formik.values.skutecznosc}
         >
-          <option value="">Przeciwnicy</option>
+          <option value=""></option>
           {types.map((type) => (
             <option key={type.name} value={type.name}>
               {type.name}
